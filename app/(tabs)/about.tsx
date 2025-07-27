@@ -1,3 +1,4 @@
+import React from 'react';
 import { StyleSheet } from 'react-native';
 import AntDesign from '@expo/vector-icons/AntDesign';
 import { Collapsible } from '@/components/Collapsible';
@@ -14,15 +15,18 @@ export default function TabTwoScreen() {
       headerImage={
         <AntDesign name="qrcode" size={320} color="green" style={styles.headerImage}/>
       }>
+
       <ThemedView style={styles.titleContainer}>
         <ThemedText type="title">About</ThemedText>
       </ThemedView>
       <ThemedText style={styles.text}>Welcome to my Universal Code Scanner!</ThemedText>
+
       <Collapsible title="Purpose of this app">
         <ThemedText style={styles.collapseText}>
           This app is capable of scanning both QR codes and barcodes, making it a versatile tool for various scanning needs.
         </ThemedText>
       </Collapsible>
+
       <Collapsible title="Author">
           <ThemedText style={styles.collapseText}>
             Alex Ramirez
@@ -34,6 +38,7 @@ export default function TabTwoScreen() {
           <ThemedText type="link">LinkedIn</ThemedText>
         </ExternalLink>
       </Collapsible>
+
       <AntDesign name="barcode" size={400} color="green" style={styles.text}/>
     </ParallaxScrollView>
   );
