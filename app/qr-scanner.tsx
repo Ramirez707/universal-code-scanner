@@ -2,6 +2,7 @@ import { useEffect, useRef } from 'react'
 import { View, Text, StyleSheet, SafeAreaView, Linking, Platform, StatusBar } from 'react-native'
 import { Link, Stack } from 'expo-router'
 import { useCameraPermissions, CameraView } from 'expo-camera'
+import { ThemedText } from '@/components/ThemedText'
 
 
 export default function QrScan() {
@@ -18,22 +19,35 @@ export default function QrScan() {
     if (!qrLock.current && data) {
       qrLock.current = true
 
-      if (await Linking.canOpenURL(data)) {
-        await Linking.openURL(data)
+      try {
+        if (await Linking.canOpenURL(data)) {
+          await Linking.openURL(data)
+        } else {
+          alert(`Scanned QR data:\n${data}`)
+        }
+      } catch (err) {
+        console.error('Failed to open URL:', err)
+        alert('Failed to open scanned data.')
       }
 
       setTimeout(() => {
         qrLock.current = false
-      }, 1000)
+      }, 2000)
     }
   }
 
   if (!permission?.granted) {
     return (
       <SafeAreaView style={styles.centered}>
+
         <Text style={styles.permissionText}>
-          Camera permission required to scan
+          Camera permission is required to scan QR codes.
         </Text>
+
+        <Link href="/">
+          <ThemedText type="link">Go to home screen!</ThemedText>
+        </Link>
+        
       </SafeAreaView>
     )
   }
@@ -59,8 +73,8 @@ export default function QrScan() {
       />
 
       <View style={styles.overlay}>
-        <View style={styles.Frame} />
-        <Text style={styles.instructionText}>Align QR code with frame</Text>
+        <View style={styles.frame} />
+        <Text style={styles.instructionText}>Align QR code within frame</Text>
       </View>
 
     </SafeAreaView>
@@ -89,11 +103,13 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
-  Frame: {
+  frame: {
     width: 250,
     height: 250,
-    backgroundColor: 'rgba(0, 0, 0, 0.8)',
-    borderRadius: 20,
+    backgroundColor: 'rgba(0, 0, 0, 0.25)',
+    borderRadius: 16,
+    borderColor: 'green',
+    borderWidth: 4,
   },
   instructionText: {
     color: 'white',
@@ -101,17 +117,17 @@ const styles = StyleSheet.create({
     marginTop: 20,
   },
   button: {
-  position: 'absolute',
-  top: 50,
-  left: 20,
-  paddingVertical: 10,
-  paddingHorizontal: 15,
-  backgroundColor: 'rgba(0,0,0,0.6)',
-  borderRadius: 8,
-  zIndex: 10,
+    position: 'absolute',
+    top: 50,
+    left: 20,
+    paddingVertical: 10,
+    paddingHorizontal: 15,
+    backgroundColor: 'rgba(0,0,0,0.65)',
+    borderRadius: 8,
+    zIndex: 10,
   },
   buttonText: {
-  color: 'white',
-  fontSize: 18,
-}
+    color: 'white',
+    fontSize: 18,
+  }
 })
