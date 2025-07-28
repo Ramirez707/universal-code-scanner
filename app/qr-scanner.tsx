@@ -45,7 +45,7 @@ export default function QrScan() {
         </Text>
 
         <Link href="/">
-          <ThemedText type="link">Go to home screen!</ThemedText>
+          <ThemedText type="link">Back to Home page</ThemedText>
         </Link>
         
       </SafeAreaView>
@@ -59,7 +59,7 @@ export default function QrScan() {
 
       {Platform.OS === 'android' && <StatusBar hidden />}
 
-      <Link href ="/" style={styles.button}>
+      <Link href="/" style={styles.button}>
         <Text style={styles.buttonText}>Back</Text>
       </Link>
 
@@ -122,7 +122,7 @@ const styles = StyleSheet.create({
     left: 20,
     paddingVertical: 10,
     paddingHorizontal: 15,
-    backgroundColor: 'rgba(0,0,0,0.65)',
+    backgroundColor: 'rgba(0, 0, 0, 0.65)',
     borderRadius: 8,
     zIndex: 10,
   },

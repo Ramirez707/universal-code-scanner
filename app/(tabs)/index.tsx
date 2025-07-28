@@ -9,12 +9,12 @@ export default function App() {
     <View style={styles.container}>
       <ImageBackground source={require('@/assets/images/home.png')} style={styles.background}>
 
-      <Link href ="/qr-scanner" style={styles.link}>
+      <Link href="/qr-scanner" style={styles.link}>
       <AntDesign name="qrcode" size={100} color="black"/>
       </Link>
       <Text style={styles.text}>QR</Text>
 
-      <Link href = "/bar-scanner" style={styles.link}>
+      <Link href="/bar-scanner" style={styles.link}>
       <AntDesign name="barcode" size={100} color="black"/>
       </Link>
       <Text style={styles.text}>Barcode</Text>

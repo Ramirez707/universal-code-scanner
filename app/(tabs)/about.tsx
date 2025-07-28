@@ -27,7 +27,13 @@ export default function TabTwoScreen() {
         </ThemedText>
       </Collapsible>
 
-      <Collapsible title="Author">
+      <Collapsible title="Types of Codes Supported">
+        <ThemedText style={styles.collapseText}>
+          QR, Aztec, EAN-13, EAN-8, PDF417, UPC-E, UPC-A, Data Matrix, Code 39, Code 93, Code 128, ITF-14, Codabar.
+        </ThemedText>
+      </Collapsible>
+
+      <Collapsible title="Developer">
         <ThemedText style={styles.collapseText}>
           Alex Ramirez
         </ThemedText>
